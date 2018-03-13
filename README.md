@@ -15,6 +15,8 @@ package manager for Python.
 ### Client Reference  
 YellowPush API needs your YellowPush credentials. You can either pass these directly to the constructor.
 
+**NOTE:** For better performance you can pass credentials and the account Identifier directly to the constructor (see the code below)
+
 ```python  
 class yellowPushSMS.rest.Client(user, password, account_id = None)
 
