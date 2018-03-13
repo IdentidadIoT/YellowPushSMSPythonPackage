@@ -19,6 +19,7 @@ YellowPush API needs your YellowPush credentials. You can either pass these dire
 class yellowPushSMS.rest.Client(user, password, account_id = None)
 
 ```
+
 ### Client parameters:	
 
 - user (str) : Your account user
@@ -28,6 +29,8 @@ class yellowPushSMS.rest.Client(user, password, account_id = None)
 
 ### Send an SMS
 
+Sends a text message to one or more mobile numbers
+
 ```python
 
 from yellowPushSMS.rest import Client
@@ -36,35 +39,18 @@ from yellowPushSMS.rest import Client
 user = "XXXXXXXXXXX"
 # Your Account password
 password  = "XXXXXXXXXXXXXX"
+# Your Account Identifier
+account_id  = "XXXXXXXXXXXXXX"
 
+client = Client(user, password, account_id)
 
-client = Client(user, password)
-
-rsp = client.SendSMS(mobileNumbers="xxxxxxxxxxx", from_="xxxxxxx", message="hello")
+rsp = client.SendSMS(mobileNumbers="xxxxxxxxxxx,xxxxxxxxxxx", from_="xxxxxxx", message="hello")
 print(rsp)
 
 ```
-
-### Request SMS EDR
-
-```python
-
-from yellowPushSMS.rest import Client
-
-# Your Account user
-user = "xxxxxxxxxx"
-# Your Account password
-password = "xxxxxxxxxx"
-
-client = Client(user, password)
-
-rsp = client.GetMessageStatus(messageId="5a5600d4-295b-6626-8a07-831993fa443c",
-                              sendDate="2018-03-05")
-print(rsp)
-
-```
-
 ### Send Bulk SMS
+
+Sends single, bulk text messages
 
 ```python
 
@@ -74,8 +60,10 @@ from yellowPushSMS.rest import Client
 user = "xxxxxxxxxxx"
 # Your Account password
 password = "xxxxxxxxxxxxx"
+# Your Account Identifier
+account_id  = "XXXXXXXXXXXXXX"
 
-client = Client(user, password)
+client = Client(user, password, account_id)
 
 list_messages = [
     {
@@ -91,6 +79,29 @@ list_messages = [
 ]
 
 rsp = client.BulkSendSMS(listMessages=list_messages)
+print(rsp)
+
+```
+
+### Get Message Status
+
+Gets the messages satatus
+
+```python
+
+from yellowPushSMS.rest import Client
+
+# Your Account user
+user = "xxxxxxxxxx"
+# Your Account password
+password = "xxxxxxxxxx"
+# Your Account Identifier
+account_id  = "XXXXXXXXXXXXXX"
+
+client = Client(user, password, account_id)
+
+rsp = client.GetMessageStatus(messageId="5a5600d4-295b-6626-8a07-831993fa443c",
+                              sendDate="2018-03-05")
 print(rsp)
 
 ```
